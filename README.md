@@ -284,7 +284,7 @@ As a first check, we plot the traceplots of the main parameters:
 
 ![](figures/traces_default-1.png)<!-- -->
 
-The pairplots look reasonable, so we proceed. 
+The traceplots look reasonable, so we proceed. 
 
 Posterior quantiles of the main parameters also look reasonable (compared to earlier analyses), effective sample sizes of all parameters are around 1,000, and Rhat is close to 1 for all parameters, which is reassuring:
 
