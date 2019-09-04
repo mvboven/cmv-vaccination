@@ -282,7 +282,7 @@ load(file = "cmv_22082019.rda")
 
 As a first check, we plot the traceplots of the main parameters: 
 
-![](README_files/figure-html/traces_default-1.png)<!-- -->
+![](figures/traces_default-1.png)<!-- -->
 
 The pairplots look reasonable, so we proceed. 
 
