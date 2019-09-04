@@ -365,7 +365,7 @@ convergence, Rhat=1).
 
 Pair plots of the main parameters uncover strong correlations between some parameters, and substantial differences in precision of estimates. For instance, the reduction in susceptibiliy to re-infection as compared to primary infection ($z$) cannot be estimated with any meaningful precision, while there is a strong correlation between the fraction of of the population that is stil susceptible at 6 months ($S_0$), and the probability of vertical transmission ($\nu$):
 
-![](README_files/figure-html/pairs_default-1.png)<!-- -->
+![](figures/pairs_default-1.png)<!-- -->
 
 The above results make intuitive sense, and can be explained in biological terms. 
 
@@ -425,15 +425,15 @@ Finally, we visualise the estimated prevalence in females and males, as well as 
 
 Female prevalence:
 
-![](README_files/figure-html/prevalence_female_default-1.png)<!-- -->
+![](figures/prevalence_female_default-1.png)<!-- -->
 
 Male prevalence: 
 
-![](README_files/figure-html/prevalence_male_default-1.png)<!-- -->
+![](figures/prevalence_male_default-1.png)<!-- -->
 
 Reactivation rates:
 
-![](README_files/figure-html/reactivation_default-1.png)<!-- -->
+![](figures/reactivation_default-1.png)<!-- -->
 
 # Sensitivity analysis
 
@@ -450,7 +450,7 @@ params = rstan::extract(fit)
 
 Again, the traces, effective sample sizes, Rhat, and pairplots suggest that the fitting procedure has delivered good results:
 
-![](README_files/figure-html/traces_high-1.png)<!-- -->
+![](figures/traces_high-1.png)<!-- -->
 
 
 ```
@@ -473,7 +473,7 @@ and Rhat is the potential scale reduction factor on split chains (at
 convergence, Rhat=1).
 ```
 
-![](README_files/figure-html/pairs_high-1.png)<!-- -->
+![](figures/pairs_high-1.png)<!-- -->
 
 LOOIC suggests that the variant model has slightly higher statistical support:
 
@@ -508,14 +508,14 @@ Next, as inthe default scenario we visualise may the estimated prevalences in fe
 
 Female prevalence:
 
-![](README_files/figure-html/prevalence_female_high-1.png)<!-- -->
+![](figures/prevalence_female_high-1.png)<!-- -->
 
 Male prevalence:
 
-![](README_files/figure-html/prevalence_male_high-1.png)<!-- -->
+![](figures/prevalence_male_high-1.png)<!-- -->
 
 Reactivation rates:
 
-![](README_files/figure-html/reactivation_high-1.png)<!-- -->
+![](figures/reactivation_high-1.png)<!-- -->
 
 Notice that while there is very good correspondence for the prevalence in both sexes between the two scenarios, but that the reactivation rate is much higher in the scenario with high spline priors. The increase in the reactivation rates is offset by a concomitant decrease in the transmissibilities of primary infection and re-infection/reactivation (beta_1 and beta_2).
