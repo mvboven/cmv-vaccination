@@ -139,9 +139,9 @@ Next, the main steps in the analysis are as follows:
 - Second, the resulting equations are discretised on a fine-grained mesh (now 1 year), assuming that rate parameters (i.e. reactivation rates) are constant on the intervals. The mesh can be made even more fine grained, or interpolations can be used to make the likelihood contributions of the serological data more precise. In our experience, there is little additional precision to be gained by such approaches. See below for code relating to the first two steps. 
 
 ```
-/* solution of the ODEs S, L, B, and intermediates X/Y in terms of the foi (lambda) in females and males */
-/* X : perinatally infected and still in L                                                               */
-/* Y : ratio of persons in L that are infected after birth (L-X) over those infected perinatally (X)     */
+/* solution of the ODEs S, L, B, and intermediates X/Y in terms of the foi in females and males      */
+/* X : perinatally infected and still in L                                                           */
+/* Y : ratio of persons in L that are infected after birth (L-X) over those infected perinatally (X) */
   
 S_f = S0 * exp(-cumulative_sum(append_row(Zero, longLambda_f)));
 S_m = S0 * exp(-cumulative_sum(append_row(Zero, longLambda_m)));
