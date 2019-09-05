@@ -19,7 +19,7 @@ THIS IS A DRAFT. EXTENSIONS AND IMPROVEMENTS WILL BE POSTED.
 
 # Introduction
 
- In this document I provide an overview of parameter inference using the endemic equilibrium of a transmission model tailored to the   epidemiology of cytomegalovirus in high-income countries. The model includes vertical transmission (congenitally and postnatally by breastfeeding/transfer of saliva), primary infection to uninfected persons, re-infection to latently infected persons, and infectious reactivation. The analyses are based on an earlier model  (<https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005719>), but with the following extensions: 
+On this page I provide an overview of parameter inference using the endemic equilibrium of a transmission model tailored to the   epidemiology of cytomegalovirus in high-income countries. The model includes vertical transmission (congenitally and postnatally by breastfeeding/transfer of saliva), primary infection to uninfected persons, re-infection to latently infected persons, and infectious reactivation. The analyses are based on an earlier model  (<https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005719>), but with the following extensions: 
  
 - Estimation of reactivation rates is not based on piecewise constant functions anymore but on cubic splines, using code by M. Kharratzadeh (<https://mc-stan.org/users/documentation/case-studies/splines_in_stan.html>). 
 
