@@ -19,13 +19,13 @@ THIS IS A DRAFT. EXTENSIONS AND IMPROVEMENTS WILL BE POSTED.
 
 # Introduction
 
- In this document we provide an overview of parameter inference with the cytomegalovirus transmission model. The analyses are based on earlier analyses (<https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005719>), but with the following extensions. 
+ In this document I provide an overview of parameter inference with a cytomegalovirus transmission model. The analyses are based on earlier analyses (<https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005719>), but with the following extensions. 
  
 - First, estimation of reactivation rates in females and males is now based on cubic splines (using code by Milad Kharratzadeh; see <https://mc-stan.org/users/documentation/case-studies/splines_in_stan.html>). 
 
-- Second, our new more flexible transmission model allows for multiple re-infection and reactivation events during a person's lifetime. 
+- Second, the new flexible transmission model allows for multiple re-infection and reactivation events during a person's lifetime. 
 
-- Third, we include data from a birth prevalence study and extended the model to estimate the probability of congenital transmission.
+- Third, I include data from a birth prevalence study and extended the model to estimate the probability of congenital transmission.
 
 # Data
 
@@ -43,7 +43,7 @@ All data have been described and published elsewhere, and are available, either 
 
 ## Data 
 
-Data and fixed parameter values are specified in the data directory (serological data and contact matrix) and R script (all other). Throughout, we take the estimated means and standard deviations of the mixing distributions as estimated in our earlier analyses. The data block of the Stan model looks as follows:
+Data and fixed parameter values are specified in the data directory (serological data and contact matrix) and R script (all other). Throughout, I take the estimated means and standard deviations of the mixing distributions as estimated in our earlier analyses. The data block of the Stan model looks as follows:
 
 ```
 data {
@@ -182,7 +182,7 @@ lambda_hat_m = Contact_MM * (beta1 * (S_m[ReduceIdxs] - S_m[ReduceIdxsRightShift
              + Contact_MF * (beta1 * (S_f[ReduceIdxs] - S_f[ReduceIdxsRightShift]) + reducinf * beta2 * aggr_L_f + beta2 * aggr_B_f);
 ```
 
-- Finally, the equations for the forces of infection are solved, and the result is inserted in the solution of the ODEs. Here, the above equations are solved (quite efficiently), using Stan. More precisely, we take our parameters of interest (lambda_f and lambda_m) to be random variates, calculate the right-hand sides of the equations for the forces of infection (lambda_hat_f and lambda_hat_m), and obtain approximate solutions by assuming that lambda_f and lambda_m are normally distributed with means lambda_hat_f and lambda_hat_m and very small standard deviations (1/Penalty). The code in the parameters block is as follows:
+- Finally, the equations for the forces of infection are solved, and the result is inserted in the solution of the ODEs. Here, the above equations are solved (quite efficiently), using Stan. More precisely, taking our parameters of interest (lambda_f and lambda_m) to be random variates, calculate the right-hand sides of the equations for the forces of infection (lambda_hat_f and lambda_hat_m), and obtain approximate solutions by assuming that lambda_f and lambda_m are normally distributed with means lambda_hat_f and lambda_hat_m and very small standard deviations (1/Penalty). The code in the parameters block is as follows:
 
 ```
 /* penalise the difference between lambda and lambda_hat and S0 and S0_hat to solve the equations           */
@@ -199,7 +199,7 @@ lambda_m ~ normal(lambda_hat_m, 1/Penalty);
 
 ## Priors and likelihood
 
-Apart from the forces of infection and fraction of the population that is susceptible explicit prior distributions are provided for the spline weights. Based on earlier analyses and the expectation that reactivation is a rare event, we take Gamma(2,50) prior distributions for all weights, yielding prior expectations for the reactivation rates of 0.04 per year. In a sensitivity analysis we have included a scenario in which reactivation is expected to be (much) more frequent (taking Gamma (10,20) prior distributions), yielding prior expectations of the reactivation rates of 0.5 per year.
+Apart from the forces of infection and fraction of the population that is susceptible explicit prior distributions are provided for the spline weights. Based on earlier analyses and the expectation that reactivation is a rare event, I take Gamma(2,50) prior distributions for all weights, yielding prior expectations for the reactivation rates of 0.04 per year. In a sensitivity analysis I have included a scenario in which reactivation is expected to be (much) more frequent (taking Gamma (10,20) prior distributions), yielding prior expectations of the reactivation rates of 0.5 per year.
 
 ```
 model {    
@@ -272,7 +272,7 @@ fit = stan(file = 'cmv_22082019.stan',
 )
 ```
 
-Running this may take a couple of hours, so we load a result (.rda) file: 
+Running this may take a couple of hours, so let's load an earlier result (.rda file): 
 
 
 ```r
@@ -280,11 +280,11 @@ Running this may take a couple of hours, so we load a result (.rda) file:
 load(file = "cmv_22082019.rda")
 ```
 
-As a first check, we plot the traceplots of the main parameters: 
+As a first check, I plot the traceplots of the main parameters: 
 
 ![](figures/traces_default-1.png)<!-- -->
 
-The traceplots look reasonable, so we proceed. 
+The traceplots look reasonable, so let's proceed. 
 
 Posterior quantiles of the main parameters also look reasonable (compared to earlier analyses), effective sample sizes of all parameters are around 1,000, and Rhat is close to 1 for all parameters, which is reassuring:
 
@@ -309,7 +309,7 @@ and Rhat is the potential scale reduction factor on split chains (at
 convergence, Rhat=1).
 ```
 
-We can do some more checks by inspection of derived parameters, i.e. the forces of infection and the reactivation rates in selected age groups. Again, all seems well:
+More checks can be done by inspection of derived parameters, i.e. the forces of infection and the reactivation rates in selected age groups. Again, all seems well:
 
 
 ```
@@ -392,7 +392,7 @@ print(MAP, digits = 4)
 721 0.00677 0.01792 0.3779 0.8583 0.321    0.491 0.1384
 ```
 
-For model selection based on (approximations of) leave-one-out predictive performance, we use the loo package (see, e.g., <https://mc-stan.org/loo/> and references on that page):  
+For model selection based on (approximations of) leave-one-out predictive performance, I use the loo package (see, e.g., <https://mc-stan.org/loo/> and references on that page):  
 
 
 ```r
@@ -421,7 +421,7 @@ All Pareto k estimates are good (k < 0.5).
 See help('pareto-k-diagnostic') for details.
 ```
 
-Finally, we visualise the estimated prevalence in females and males, as well as the reactivation rates. The estimated prevalence are in good agreement with our earlier estimates (as they should). As in our earlier study, reactivation rate estimates are generally higher in females than in males.
+Finally, let's visualise the estimated prevalence in females and males, as well as the reactivation rates. The estimated prevalence are in good agreement with our earlier estimates (as they should). As in our earlier study, reactivation rate estimates are generally higher in females than in males.
 
 Female prevalence:
 
@@ -437,7 +437,7 @@ Reactivation rates:
 
 # Sensitivity analysis
 
-In my experience, the results (i.e. parameter estimates) are remarkably robust to variations in the prior distributions. In fact, explicit prior distributions are only specified for spline weights. The prior distributions for the weights do have a strong impact on the parameter estimates. Therefore, we show results for an alternative scenario with higher (gamma(10,20)) prior distributions for the splines weights. We remove the results form the dfault scenario, and load a pre-run alternative scenario:
+In my experience, the results (i.e. parameter estimates) are remarkably robust to variations in the prior distributions. In fact, explicit prior distributions are only specified for spline weights. The prior distributions for the weights do have a strong impact on the parameter estimates. Therefore, I show results for an alternative scenario with higher (gamma(10,20)) prior distributions for the splines weights. Results form the default scenario are removed, and an alternative scenario is loaded:
 
 
 ```r
@@ -504,7 +504,7 @@ All Pareto k estimates are good (k < 0.5).
 See help('pareto-k-diagnostic') for details.
 ```
 
-Next, as inthe default scenario we visualise may the estimated prevalences in females and males, as well as the reactivation rates. 
+Next, as in the default scenario let's visualise the estimated prevalences in females and males, as well as the reactivation rates. 
 
 Female prevalence:
 
