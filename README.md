@@ -19,13 +19,13 @@ THIS IS A DRAFT. EXTENSIONS AND IMPROVEMENTS WILL BE POSTED.
 
 # Introduction
 
- In this document I provide an overview of parameter inference using the endemic equilibrium of a transmission model tailored to the   epidemiology of cytomegalovirus in high-income countries. The model includes vertical transmission (congenitally and postnatally by breastfeeding/transfer of saliva), primary infection to uninfected persons, re-infection to latently infected persons, and infectious reactivation. The analyses are based on an earlier model  (<https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005719>), but with the following extensions. 
+ In this document I provide an overview of parameter inference using the endemic equilibrium of a transmission model tailored to the   epidemiology of cytomegalovirus in high-income countries. The model includes vertical transmission (congenitally and postnatally by breastfeeding/transfer of saliva), primary infection to uninfected persons, re-infection to latently infected persons, and infectious reactivation. The analyses are based on an earlier model  (<https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005719>), but with the following extensions: 
  
-- First, estimation of reactivation rates in females and males is now based on cubic splines using code by M. Kharratzadeh (<https://mc-stan.org/users/documentation/case-studies/splines_in_stan.html>). 
+- Estimation of reactivation rates in females and males is now based on cubic splines using code by M. Kharratzadeh (<https://mc-stan.org/users/documentation/case-studies/splines_in_stan.html>). 
 
-- Second, the new flexible transmission model allows for multiple re-infection and reactivation events during a person's lifetime. 
+- The new transmission model allows for multiple re-infection and reactivation events during a person's lifetime. 
 
-- Third, I include data from a birth prevalence study and extended the model to estimate the probability of congenital transmission.
+- Data from a birth prevalence study are included, and the model is extended to be able to estimate the probability of congenital transmission.
 
 The analyses and results presented here form the starting point of a manuscript that evaluates the impact of various vaccination strategies against CMV. Authors of the manuscript are Ganna Rozhnova, Mirjam Kretzschmar, Fiona van der Klis, Debbie van Baarle,
 Marjolein Korndewal, Ann Vossen, and Michiel van Boven.
