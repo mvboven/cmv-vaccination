@@ -518,4 +518,4 @@ Reactivation rates:
 
 ![](figures/reactivation_high-1.png)<!-- -->
 
-Notice that while there is very good correspondence for the prevalence in both sexes between the two scenarios, but that the reactivation rate is much higher in the scenario with high spline priors. The increase in the reactivation rates is offset by a concomitant decrease in the transmissibilities of primary infection and re-infection/reactivation (beta_1 and beta_2).
+Notice that there is very good correspondence for the prevalence in both sexes between the two scenarios, but that the reactivation rate is much higher in the scenario with high spline priors. The increase in the reactivation rates is offset by a concomitant decrease in the transmissibilities of primary infection and re-infection/reactivation (beta_1 and beta_2).
