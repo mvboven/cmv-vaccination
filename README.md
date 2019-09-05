@@ -21,7 +21,7 @@ THIS IS A DRAFT. EXTENSIONS AND IMPROVEMENTS WILL BE POSTED.
 
  In this document I provide an overview of parameter inference using the endemic equilibrium of a transmission model tailored to the   epidemiology of cytomegalovirus in high-income countries. The model includes vertical transmission (congenitally and postnatally by breastfeeding/transfer of saliva), primary infection to uninfected persons, re-infection to latently infected persons, and infectious reactivation. The analyses are based on an earlier model  (<https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005719>), but with the following extensions. 
  
-- First, estimation of reactivation rates in females and males is now based on cubic splines (using code by Milad Kharratzadeh; see <https://mc-stan.org/users/documentation/case-studies/splines_in_stan.html>). 
+- First, estimation of reactivation rates in females and males is now based on cubic splines using code by M. Kharratzadeh (<https://mc-stan.org/users/documentation/case-studies/splines_in_stan.html>). 
 
 - Second, the new flexible transmission model allows for multiple re-infection and reactivation events during a person's lifetime. 
 
@@ -29,7 +29,7 @@ THIS IS A DRAFT. EXTENSIONS AND IMPROVEMENTS WILL BE POSTED.
 
 # Data
 
-All data have been described and published elsewhere, and are available, either in the data directory or R script (<https://github.com/mvboven/cmv-vaccination>).
+All data have been described and published elsewhere, and are available in the data directory or R script (<https://github.com/mvboven/cmv-vaccination>).
 
 - The serological data have been analysed earlier (see <https://www.sciencedirect.com/science/article/pii/S1386653214004612>,  <https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005719>, and the PhD thesis of M. Korndewal, available at  <https://openaccess.leidenuniv.nl/handle/1887/45778>). As in our earlier analyses, from the serological study we select persons of Western ethnicity (ethnicity is a known independent risk factor for infection and the majority of persons in the Netherlands are of Western ethnicity), and exclude infants under 6 months (to prevent interference of maternal antibodies). Further, a subset of 651 samples are right-censored, so 2,842 and 2,337 samples from female and male participants are included in the analyses.
 
