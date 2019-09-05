@@ -121,7 +121,7 @@ In addition, the transformed parameters block contains specifications of auxilia
 /* auxiliary vectors to efficiently solve ODEs for S, L, and B */
 vector<lower=0, upper=1>[DeltaA*A+1] X_f;     // boys latently infected at birth
 vector<lower=0, upper=1>[DeltaA*A+1] X_m;     // girls latently infected at birth
-vector<lower=0>[DeltaA*A+1] Y_f;              // =(L_f-X_f)/X_f ratio of L's infected horizontally/vertically
+vector<lower=0>[DeltaA*A+1] Y_f;              // =(L_f-X_f)/X_f ratio in L infected hor/vert
 vector<lower=0>[DeltaA*A+1] Y_m;              // =(L_m-X_m)/X_m
 
 /* lambda hat (i.e. the force of infection) should be very similar to lambda */
