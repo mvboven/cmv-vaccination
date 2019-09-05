@@ -366,7 +366,7 @@ and Rhat is the potential scale reduction factor on split chains (at
 convergence, Rhat=1).
 ```
 
-Pair plots of the main parameters uncover strong correlations between some parameters, and substantial differences in precision of estimates. For instance, the reduction in susceptibiliy to re-infection as compared to primary infection ($z$) cannot be estimated with any meaningful precision, while there is a strong correlation between the fraction of of the population that is stil susceptible at 6 months ($S_0$), and the probability of vertical transmission ($\nu$):
+Pair plots of the main parameters uncover strong correlations between some parameters, and substantial differences in precision of estimates. For instance, the reduction in susceptibiliy to re-infection as compared to primary infection (z) cannot be estimated with any meaningful precision, while there is a strong correlation between the fraction of of the population that is stil susceptible at 6 months (S0), and the probability of vertical transmission (nu):
 
 ![](figures/pairs_default-1.png)<!-- -->
 
@@ -521,4 +521,4 @@ Reactivation rates:
 
 ![](figures/reactivation_high-1.png)<!-- -->
 
-Notice that there is very good correspondence for the prevalence in both sexes between the two scenarios, but that the reactivation rate is much higher in the scenario with high spline priors. The increase in the reactivation rates is offset by a concomitant decrease in the transmissibilities of primary infection and re-infection/reactivation (beta_1 and beta_2).
+Notice that there is very good correspondence for the prevalence in both sexes between the two scenarios, but that the reactivation rate is much higher in the scenario with high spline priors. The increase in the reactivation rates is offset by a concomitant decrease in the transmissibilities of primary infection and re-infection/reactivation (beta1 and beta2).
