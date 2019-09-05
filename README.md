@@ -61,10 +61,10 @@ data {
   real MuS;                                   // mean of classification mixture (S) (estimated in mvb17)
   real MuL;                                   // mean of classification mixture (L)
   real MuB;                                   // mean of classification mixture (B)
-  real<lower=0> SigmaS;                       // mixture standard deviation of the uninfected component
-  real<lower=0> SigmaL;                       // mixture standard deviation of the infected component
-  real<lower=0> SigmaB;                       // mixture standard deviation of infected with raised antibodies
-  int<lower=1> numbertestedinfants;           // # infants tested for congenital CMV (cCMV) - total: 31,484
+  real<lower=0> SigmaS;                       // standard deviation of the uninfected component
+  real<lower=0> SigmaL;                       // standard deviation of the infected component
+  real<lower=0> SigmaB;                       // standard deviation of infected with raised antibodies
+  int<lower=1> numbertestedinfants;           // # infants tested for cCMV - total: 31,484
   int<lower=1> numbercCMVinfants;             // # infants positive for cCMV - total: 154
   real<lower=0> Penalty;                      // estimation of the fois/S0: LHS ~ N(RHS,1/Penalty)
   int<lower=0, upper=1> Gender[N];            // 0 = female, 1 = male
@@ -87,9 +87,9 @@ parameters {
   real<lower=0> beta1;                        // infectivity after primary infection
   real<lower=0> beta2;                        // infectivity after reactivation/re-infection in L or L/B
   real<lower=0, upper=1> z;                   // reduction in susceptibility to reinfection
-  real<lower=0, upper=1> probLtoB;            // prob that reactivation/reinfection leads to Antibody boosting
+  real<lower=0, upper=1> probLtoB;            // prob that reactivation/reinfection leads to Ab boosting
   real<lower=0> S0;                           // fraction of the population not vertically infected
-  real<lower=0, upper=1> qcCMV;               // prob of congenital infection during acute infection of mother
+  real<lower=0, upper=1> qcCMV;               // prob of cCMV during acute infection of mother
   real<lower=0> nu;                           // probability of vertical transmission
   matrix<lower=0>[2, num_basis] a_raw;        // spline basis functions; 1 = female, 2 = male
   vector<lower=0>[A] lambda_f;                // forces of infection on the age-intervals in females
