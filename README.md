@@ -19,7 +19,7 @@ THIS IS A DRAFT. EXTENSIONS AND IMPROVEMENTS WILL BE POSTED.
 
 # Introduction
 
- In this document I provide an overview of parameter inference using the endemic equilibriumn of transmissiom model tailored for  cytomegalovirus. The model includes vertical transmission (congenitally and postnatally by breastfeeding), primary infection to uninfected persons, re-infection to latently infected persons, and infectious reactivation. The analyses are based on an earlier model  (<https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005719>), but with the following extensions. 
+ In this document I provide an overview of parameter inference using the endemic equilibrium of a transmissiom model tailored for  cytomegalovirus. The model includes vertical transmission (congenitally and postnatally by breastfeeding), primary infection to uninfected persons, re-infection to latently infected persons, and infectious reactivation. The analyses are based on an earlier model  (<https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005719>), but with the following extensions. 
  
 - First, estimation of reactivation rates in females and males is now based on cubic splines (using code by Milad Kharratzadeh; see <https://mc-stan.org/users/documentation/case-studies/splines_in_stan.html>). 
 
