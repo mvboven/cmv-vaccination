@@ -27,6 +27,9 @@ THIS IS A DRAFT. EXTENSIONS AND IMPROVEMENTS WILL BE POSTED.
 
 - Third, I include data from a birth prevalence study and extended the model to estimate the probability of congenital transmission.
 
+The analyses and results presented here form the starting point of a manuscript that evaluates the impact of various vaccination strategies against CMV. Authors of the manuscript are Ganna Rozhnova, Mirjam Kretzschmar, Fiona van der Klis, Debbie van Baarle,
+Marjolein Korndewal, Ann Vossen, and Michiel van Boven.
+
 # Data
 
 All data have been described and published elsewhere, and are available in the data directory or R script (<https://github.com/mvboven/cmv-vaccination>).
