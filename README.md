@@ -25,7 +25,7 @@ THIS IS A DRAFT. EXTENSIONS AND IMPROVEMENTS WILL BE POSTED.
 
 - For increased biological realism, the new transmission model allows for multiple re-infection and reactivation events during a person's lifetime. 
 
-- Data from a birth prevalence study are included, and the model is extended to be able to estimate the probability of congenital transmission. This is an important extension as much of the health burden is due to congenital infections (which can lead to debilitating long-term sequelae).
+- Data from a birth prevalence study are included, and the model is extended to be able to estimate the probability of congenital transmission. This is an important extension as much of the health burden is due to congenital infections (which can lead to serious long-term sequelae).
 
 The analyses and results presented here form the starting point of a manuscript that evaluates the impact of various vaccination strategies against CMV. Authors of the manuscript are Ganna Rozhnova, Mirjam Kretzschmar, Fiona van der Klis, Debbie van Baarle,
 Marjolein Korndewal, Ann Vossen, and Michiel van Boven.
