@@ -185,13 +185,13 @@ lambda_hat_m = Contact_MM * (beta1 * (S_m[ReduceIdxs] - S_m[ReduceIdxsRightShift
 - Finally, the equations for the forces of infection are solved, and the result is inserted in the solution of the ODEs. Here, the above equations are solved (quite efficiently), using Stan. More precisely, taking our parameters of interest (lambda_f and lambda_m) to be random variates, calculate the right-hand sides of the equations for the forces of infection (lambda_hat_f and lambda_hat_m), and obtain approximate solutions by assuming that lambda_f and lambda_m are normally distributed with means lambda_hat_f and lambda_hat_m and very small standard deviations (1/Penalty). The code in the parameters block is as follows:
 
 ```
-/* penalise the difference between lambda and lambda_hat and S0 and S0_hat to solve the equations           */
-/* TODO: lambda_f - lambda_hat_f ~ normal(0,1/Penalty) does not work: do  target += log(det(Jacobian))      */
-/* future: use solver. I have tried this but now still seems prohibitively slow                             */
-/* the formulation below can be viewed as a model in itself: A priori we would like to select parameter     */
-/* values that are compatible with a transmission model. Taking a high penalty, the result will match       */
-/* the transmission model. For low values of the penalty the result may differ from the transmission model. */
-/* Here, I have taken the penalty to be 10^4, which forces lambda and lambda_hat to be quite similar.       */
+/* penalise the difference between lambda and lambda_hat/S0 and S0_hat to solve the equations           */
+/* lambda_f - lambda_hat_f ~ normal(0,1/Penalty) does not work: do  target += log(det(Jacobian))        */
+/* future: use solver. I have tried this but now still seems prohibitively slow                         */
+/* the formulation below can be viewed as a model in itself: A priori we would like to select parameter */
+/* values that are compatible with a transmission model. Taking a high penalty, the result will match   */
+/* the transmission model. For low penalty the result may differ from the transmission model.           */
+/* Here, I have taken the penalty to be 10^4, which forces lambda and lambda_hat to be quite similar.   */
 
 lambda_f ~ normal(lambda_hat_f, 1/Penalty);                
 lambda_m ~ normal(lambda_hat_m, 1/Penalty);                
