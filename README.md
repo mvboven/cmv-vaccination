@@ -372,7 +372,7 @@ Pair plots of the main parameters uncover strong correlations between some param
 
 The above results make intuitive sense, and can be explained in biological terms. 
 
-It is convenient to have the maximum a posteriori (MAP) estimate at hand for forward simulations from the endemic equilibrium. The MAP has been used to draw some of some of the figures in the  manuscript:
+It is convenient to have the maximum a posteriori (MAP) estimate at hand for forward simulations from the endemic equilibrium. The MAP is also used to draw some of the figures in the  manuscript:
 
 
 ```r
