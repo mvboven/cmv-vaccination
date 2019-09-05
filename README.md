@@ -240,7 +240,7 @@ for ( i in 1 : N ) {// loop over subjects
    if ( Censor[i] == 0 ) { // normal data
      target += watanabe_beta * log( pS * exp(normal_lpdf(Titers[i] | MuS, SigmaS)) +
                                     pL * exp(normal_lpdf(Titers[i] | MuL, SigmaL)) +
-                                    pB * exp(normal_lpdf(Titers[i] | MuB, SigmaB)) ); //or use log_exp_sum 
+                                    pB * exp(normal_lpdf(Titers[i] | MuB, SigmaB)) ); //or log_exp_sum 
    }
    else if ( Censor[i] == 1 ) { // right censored
           target += watanabe_beta * log( pS * exp(normal_lccdf(RightCensor | MuS, SigmaS)) +
