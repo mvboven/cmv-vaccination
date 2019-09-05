@@ -440,7 +440,7 @@ Reactivation rates:
 
 # Sensitivity analysis
 
-In my experience, the results (i.e. parameter estimates) are remarkably robust to variations in the prior distributions. In fact, explicit prior distributions are only specified for spline weights. The prior distributions for the weights do have a strong impact on the parameter estimates. Therefore, I show results for an alternative scenario with higher (gamma(10,20)) prior distributions for the splines weights. Results form the default scenario are removed, and an alternative scenario is loaded:
+Speaking from experience, the results (i.e. parameter estimates) are remarkably robust to variations in the prior distributions. In fact, explicit prior distributions are only specified for spline weights. The prior distributions for the weights do have a strong impact on the parameter estimates. Therefore, I show results for an alternative scenario with higher (gamma(10,20)) prior distributions for the splines weights. Results form the default scenario are removed, and an alternative scenario is loaded:
 
 
 ```r
