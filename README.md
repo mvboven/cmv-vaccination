@@ -11,11 +11,7 @@ output:
     toc: no
 ---
 
-
-
-
-
-THIS IS A DRAFT. EXTENSIONS AND IMPROVEMENTS WILL BE POSTED.
+Updated: 17 October 2019
 
 # Introduction
 
