@@ -51,9 +51,9 @@ data {
   int<lower=1> A;                             // number of age intervals
   matrix<lower=0>[A, A] Contact_MM;           // gender- and age-specific contact matrices
   matrix<lower=0>[A, A] Contact_FM;           // male to female contact matrix
-  matrix<lower=0>[A, A] Contact_MF;           // female to male contact matirx
+  matrix<lower=0>[A, A] Contact_MF;           // female to male contact matrix
   matrix<lower=0>[A, A] Contact_FF;           // female to female
-  int<lower=0, upper=DeltaA*A> Ages[N];       // subject ages (rounded from months (LFTB2 in P2) to years)
+  int<lower=0, upper=DeltaA*A> Ages[N];       // subject ages (unit: years; precision: 1/12)
   real Titers[N];                             // antibody titers
   int Censor[N];                              // 0 = normal, 1 = censored, 2 = spike (see mvb17)
   real RightCensor;                           // titers above this value are right-censored
@@ -79,7 +79,7 @@ data {
 
 ## Parameters
 
-Fundamental parameters of the model are the infectiousness of persons with a primary infection (beta_1), the infectiousness after re-infection or reactivation (beta_2), the reduced susceptibility to re-infection as compared with primary infection (z), the probability that re-infection or reactivation lead to antibody boosting (probLtoB), the fraction of the population that is uninfected at 6 months (i.e. not infected congenitally or postnatally) (S0), and the probabilities of congential infection from an acutely infected mother (qcCMV) and postnatal infection (e.g., by breastfeeding, transfer of saliva from mother to offspring) (nu). Also estimated are the spline wieghts for the reactivation rates in females and males (a_raw). The 16x2=32 nonlinear equations for the age-specific forces of infection at equilibrium ($\lambda_f$ and $\lambda_m$) that result after interval decomposition (16 for each sex; see e.g., Chapter 9 of <https://press.princeton.edu/titles/9916.html> for details) are efficiently solved using a trick (see below). The parameter block is given by:
+Fundamental parameters of the model are the infectiousness of persons with a primary infection (beta_1), the infectiousness after re-infection or reactivation (beta_2), the reduced susceptibility to re-infection as compared with primary infection (z), the probability that re-infection or reactivation lead to antibody boosting (probLtoB), the fraction of the population that is uninfected at 6 months (i.e. not infected congenitally or postnatally) (S0), and the probabilities of congential infection from an acutely infected mother (qcCMV) and postnatal infection (e.g., by breastfeeding, transfer of saliva from mother to offspring) (nu). Also estimated are the spline wieghts for the reactivation rates in females and males (a_raw). The 16x2=32 nonlinear equations for the age-specific forces of infection at equilibrium (\lambda_f and \lambda_m) that result after interval decomposition (16 for each sex; see e.g., Chapter 9 of <https://press.princeton.edu/titles/9916.html> for details) are efficiently solved using a trick (see below). The parameter block is given by:
 
 ```
 parameters {
@@ -88,8 +88,8 @@ parameters {
   real<lower=0, upper=1> z;                   // reduction in susceptibility to reinfection
   real<lower=0, upper=1> probLtoB;            // prob that reactivation/reinfection leads to Ab boosting
   real<lower=0> S0;                           // fraction of the population not vertically infected
-  real<lower=0, upper=1> qcCMV;               // prob of cCMV during acute infection of mother
-  real<lower=0> nu;                           // probability of vertical transmission
+  real<lower=0, upper=1> qcCMV;               // prob cCMV during acute infection of mother
+  real<lower=0> nu;                           // prob vertical transmission (including cCMV)
   matrix<lower=0>[2, num_basis] a_raw;        // spline basis functions; 1 = female, 2 = male
   vector<lower=0>[A] lambda_f;                // forces of infection on the age-intervals in females
   vector<lower=0>[A] lambda_m;                // forces of infection on the age-intervals in males
@@ -128,9 +128,9 @@ vector<lower=0>[A] lambda_hat_f;
 vector<lower=0>[A] lambda_hat_m;
 ```
 
-Next, the main steps in the analysis are as follows:
+Next, the main steps are as follows:
 
-- First, the ODEs for the age- and sex-specific prevalence at equilbrium are solved in terms of the forces of infection and other parameters low-level parameters. Details are available on request.
+- First, the ODEs for the age- and sex-specific prevalence at equilbrium are solved in terms of the forces of infection and other parameters. Details are available on request.
 
 - Second, the resulting equations are discretised on a fine-grained mesh (now 1 year), assuming that rate parameters (i.e. reactivation rates) are constant on the intervals. The mesh can be made even more fine grained, or interpolations can be used to make the likelihood contributions of the serological data more precise. In our experience, there is little additional precision to be gained by such approaches. See below for code relating to the first two steps. 
 
@@ -157,7 +157,7 @@ B_f = LlongOnes - S_f - L_f;
 B_m = LlongOnes - S_m - L_m;
 ```
 
-- Third, the discretised solutions for the prevalence in S, L, and B are inserted in the equations for the forces of infection, while using the short-disease approximation (acute infections are 2-4 orders of magnitude shorter than human lifespan). This procedure yields 16*2=32 (16 age groups, 2 sexes) non-linear equations for the forces of infection. See below for code:
+- Third, the discretised solutions for the prevalence in S, L, and B are inserted in the equations for the forces of infection, while using the short-disease approximation (acute infections are 2-4 orders of magnitude shorter than human lifespan). This procedure yields 32 (16 age groups, 2 sexes) non-linear equations for the forces of infection. See below for code:
 
 ```
 /* new model (compared to mvb17) that splits between infectiousness from L vs B and enables estimation      */
@@ -181,7 +181,7 @@ lambda_hat_m = Contact_MM * (beta1 * (S_m[ReduceIdxs] - S_m[ReduceIdxsRightShift
              + Contact_MF * (beta1 * (S_f[ReduceIdxs] - S_f[ReduceIdxsRightShift]) + reducinf * beta2 * aggr_L_f + beta2 * aggr_B_f);
 ```
 
-- Finally, the equations for the forces of infection are solved, and the result is inserted in the solution of the ODEs. Here, the above equations are solved (quite efficiently), using Stan. More precisely, taking our parameters of interest (lambda_f and lambda_m) to be random variates, calculate the right-hand sides of the equations for the forces of infection (lambda_hat_f and lambda_hat_m), and obtain approximate solutions by assuming that lambda_f and lambda_m are normally distributed with means lambda_hat_f and lambda_hat_m and very small standard deviations (1/Penalty). The code in the parameters block is as follows:
+- Finally, the equations for the forces of infection are solved, and the result is inserted in the solution of the ODEs. Here, the above equations are solved (quite efficiently) using Stan. More precisely, taking our parameters of interest (lambda_f and lambda_m) to be random variates, calculate the right-hand sides of the equations for the forces of infection (lambda_hat_f and lambda_hat_m), and obtain approximate solutions by assuming that lambda_f and lambda_m are normally distributed with means lambda_hat_f and lambda_hat_m and very small standard deviations (1/Penalty). The code in the parameters block is as follows:
 
 ```
 /* penalise the difference between lambda and lambda_hat/S0 and S0_hat to solve the equations           */
