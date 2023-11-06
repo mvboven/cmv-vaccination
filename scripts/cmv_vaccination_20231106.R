@@ -113,7 +113,7 @@ parameter_inits = function(){
 
 # estimate parameters with Stan
 # main analysis with gamma(2,50) priors for spline weights
-fit = stan(file = 'cmv (18042019).stan', 
+fit = stan(file = 'cmv_22082019.stan', 
   data = data_values, 
   init = parameter_inits, 
   iter = 2000, 
